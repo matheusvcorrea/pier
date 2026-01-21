@@ -56,6 +56,7 @@ Cada uma dessas escolhas iniciais se mostram boas na criação do modelo, result
 
 Aqui apenas segui as instruções presentes no README. Tentei manter o codigo enxuto e separado em modulos principais
 
+```sh
 api/
 ├── __init__.py
 ├── api.py
@@ -63,6 +64,7 @@ api/
 ├── route.py
 ├── schemas.py
 └── test_api.py
+```
 
 O aquivo é principal e *main* da aplicação é o api.py. O arquivo estimator carrega o modelo de acordo com a disponibilidade.
 
