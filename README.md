@@ -15,7 +15,7 @@ python3 train.py --experiment-name lottery_v2
 python3 train.py --mlflow-tracking-uri http://localhost:5000 --experiment-name lottery_production
 ```
 
-Utilize `python3 train.py --help`` para mais detalhes de usabilidade desse arquivo.
+Utilize `python3 train.py --help` para mais detalhes de usabilidade desse arquivo.
 
 # The API usage
 
@@ -42,11 +42,11 @@ Em produção utilize o container definido em [](./Dockerfile).
 
 # Model design
 
-Optnei por um modelo que faça predição de acumalção. Criei um arquivo de analise inicial em [](./ead-modeling.ipynb) e arquivos auxiliares na raiz do projeto: [](./evaluate_report.py), [](./train.py) e [](./classify_model.py). Esse ultimo é onde o treino realmente acontece.
+Optnei por um modelo que faça predição de acumalção. Criei um arquivo de analise inicial em [ead-modeling](./ead-modeling.ipynb) e arquivos auxiliares na raiz do projeto: [evaluate_report](./evaluate_report.py), [train](./train.py) e [classify_model](./classify_model.py). Esse ultimo é onde o treino realmente acontece.
 
 **Justicativa**: Um problema de classifação exige alguns cuidados com relação a metricas de escolha do melhor modelo e também validação. Dando assim uma possibilidade interessante na solução proposta.
 
-**Modelo escolhido**: Escolhi o `Lighgbm` por ser um abordagem de modelegem que suporta uma variedade de dados nativamente. Também, dado o tipo de dados tabular, decidi por um modelo que é reportado como um dos melhores resultados na literatura.
+**Modelo escolhido**: Escolhi o `Lightgbm` por ser um abordagem de modelegem que suporta uma variedade de dados nativamente. Também, dado o tipo de dados tabular, decidi por um modelo que é reportado como um dos melhores resultados na literatura.
 
 **Feature Selection**: Optei por features puramente numericas num primeiro passo, visto que são faceis de analisar, tratar e proporcionam rapida prototipagem de modelo. Também apliquei uma seleção automática de features utilizando utilizando um modelo RandomForest. Essa escolha foi por conta do tamanho da base de dados e numero de features. Outras abordagens poderiam ser aplicadas, mas optei por essa num primeiro momento.
 
