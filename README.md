@@ -3,7 +3,8 @@
 Primeiro rode os arquivos de traino e depois a API com `FastAPI`.
 
 # Train
-Premeiro passo
+
+Primeiro passo
 
 ```sh
 python3 train.py
@@ -19,10 +20,9 @@ Utilize `python3 train.py --help` para mais detalhes de usabilidade desse arquiv
 
 # The API usage
 
-On the dev enviroment run the command `fastapi dev api/api.py`. Then you can refer  to the Docs and perform some input examples at 
-[Lottery Accumulation Prediction API](http://localhost:8000/docs#/).
+No ambiente de desenvolvimento execute o comando `fastapi dev api/api.py`. Em seguida você pode se dirigir até o endpoint `/docs` do FastAPI em [Lottery Accumulation Prediction API](http://localhost:8000/docs#/).
 
-The following is a command line usage example using the `curl` cli.
+O comando a seguir é um exemplo de utilização do `curl` cli.
 
 ```sh
 curl -X 'POST' \
@@ -38,23 +38,23 @@ curl -X 'POST' \
 }'
 ```
 
-Em produção utilize o container definido em [](./Dockerfile).
+Em produção utilize o container definido em [Dockerfile](./Dockerfile).
 
 # Model design
 
-Optnei por um modelo que faça predição de acumalção. Criei um arquivo de analise inicial em [ead-modeling](./ead-modeling.ipynb) e arquivos auxiliares na raiz do projeto: [evaluate_report](./evaluate_report.py), [train](./train.py) e [classify_model](./classify_model.py). Esse ultimo é onde o treino realmente acontece.
+Optei por um modelo que faça predição de acumulação. Criei um arquivo de analise inicial em [ead-modeling](./ead-modeling.ipynb) e arquivos auxiliares na raiz do projeto: [evaluate_report](./evaluate_report.py), [train](./train.py) e [classify_model](./classify_model.py). Esse ultimo é onde o treino realmente acontece.
 
-**Justicativa**: Um problema de classifação exige alguns cuidados com relação a metricas de escolha do melhor modelo e também validação. Dando assim uma possibilidade interessante na solução proposta.
+**Justificativa**: Um problema de classificação exige alguns cuidados com relação a métricas de escolha do melhor modelo e também validação. Dando assim uma possibilidade interessante na solução proposta.
 
 **Modelo escolhido**: Escolhi o `Lightgbm` por ser um abordagem de modelegem que suporta uma variedade de dados nativamente. Também, dado o tipo de dados tabular, decidi por um modelo que é reportado como um dos melhores resultados na literatura.
 
-**Feature Selection**: Optei por features puramente numericas num primeiro passo, visto que são faceis de analisar, tratar e proporcionam rapida prototipagem de modelo. Também apliquei uma seleção automática de features utilizando utilizando um modelo RandomForest. Essa escolha foi por conta do tamanho da base de dados e numero de features. Outras abordagens poderiam ser aplicadas, mas optei por essa num primeiro momento.
+**Feature Selection**: Optei por features puramente numéricas num primeiro passo, visto que são fáceis de analisar, tratar e proporcionam rápida prototipagem de modelo. Também apliquei uma seleção automática de features utilizando utilizando um modelo `RandomForest`. Essa escolha foi por conta do tamanho da base de dados e numero de features. Outras abordagens poderiam ser aplicadas, mas optei por essa num primeiro momento.
 
-Cada uma dessas escolhas iniciais se mostram boas na criação do modelo, resultando em metricas de qualidade do modelo boas.
+Cada uma dessas escolhas iniciais se mostram boas na criação do modelo, resultando em métricas de qualidade do modelo boas.
 
 # API Design
 
-Aqui apenas segui as instruções presentes no README. Tentei manter o codigo enxuto e separado em modulos principais
+Aqui apenas segui as instruções presentes no README. Tentei manter o código enxuto e separado em módulos principais
 
 ```sh
 api/
