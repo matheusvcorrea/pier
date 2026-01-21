@@ -1,0 +1,27 @@
+# Requirements file for the Lottery Accumulation Prediction API
+# Updated with MLflow and OOP modular structure dependencies
+
+# Core data science libraries
+pandas==2.3.3
+numpy>=1.26.0
+scikit-learn==1.8.0
+joblib==1.5.3
+lightgbm==4.6.0
+
+# MLflow for experiment tracking and model management
+mlflow==2.15.1
+
+# FastAPI and related dependencies
+fastapi==0.115.0
+uvicorn==0.32.0
+pydantic==2.9.0
+
+# Additional utilities
+python-dateutil==2.9.0.post0
+pytz>=2020.1
+tzdata==2025.3
+
+# Development and testing
+testcontainers==4.7.1
+pytest==8.3.3
+python-dotenv==1.0.1
