@@ -1,8 +1,5 @@
 # Dockerfile for Lottery Accumulation Prediction API
-# Multi-stage build for optimized production deployment
-
-# Stage 1: Build stage
-FROM python:3.11-slim as builder
+FROM python:3.11-slim
 
 # Set working directory
 WORKDIR /app
@@ -12,32 +9,23 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY requirements.txt .
-
-# Install Python dependencies
-RUN pip install --no-cache-dir --user -r requirements.txt
-
-# Stage 2: Runtime stage
-FROM python:3.11-slim
-
-# Set working directory
-WORKDIR /app
-
 # Create non-root user for security
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 
-# Copy installed packages from builder stage
-COPY --from=builder /root/.local /root/.local
-
-# Copy application code
-COPY --chown=appuser:appuser . .
+# Copy requirements first for better caching
+COPY --chown=appuser:appuser requirements.txt .
 
 # Switch to non-root user
 USER appuser
 
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
 # Add local bin to PATH
-ENV PATH=/root/.local/bin:$PATH
+ENV PATH=/home/appuser/.local/bin:$PATH
 
 # Expose the API port
 EXPOSE 8000
